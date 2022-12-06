@@ -1,0 +1,74 @@
+
+GET http://localhost:4004/Catalog/$metadata
+
+#---------------------------------------ZCUX_POSS_ANSWERSet------------------------------
+
+GET http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet(IdQuestion='0000000003',IdAnswer='0000000002')
+
+POST http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet
+Content-Type: application/json
+
+{
+"IdQuestion": "0000000099",
+"IdAnswer":   "0000000099",
+"TextAnswer": "test"
+}
+
+PATCH http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet(IdQuestion='0000000099',IdAnswer='0000000099')
+Content-Type: application/json
+
+{
+"TextAnswer": "updating"
+}
+
+DELETE http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet(IdQuestion='0000000099',IdAnswer='0000000099')
+
+
+
+#---------------------------------------ZCUX_QT_ANSSet------------------------------
+
+GET http://localhost:4004/Catalog/ZCUX_QT_ANSSet(IdQuestion='0000000002',Username='Sharada.Sowmya@msg-global.com')
+
+POST http://localhost:4004/Catalog/ZCUX_QT_ANSSet
+Content-Type: application/json
+
+{
+"IdQuestion": "0000000999",
+"IdAnswer": "0000000000",
+"TextAnswer": "X"
+}
+
+
+PATCH http://localhost:4004/Catalog/ZCUX_QT_ANSSet(IdQuestion='0000000999',Username='anonymous')
+Content-Type: application/json
+
+{
+"TextAnswer": "updating"
+}
+
+DELETE http://localhost:4004/Catalog/ZCUX_QT_ANSSet(IdQuestion='0000000999',Username='anonymous')
+
+
+#---------------------------------------ZCUX_QUESTIONNAIRESet------------------------------
+
+GET http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet
+
+GET http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet('0000000003')
+
+POST http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet
+Content-Type: application/json
+
+{
+  "TextQuestion": "Which BU are you from?",
+  "TypeAnswer": "03",
+  "ExtraTooltip": "SELECT"
+}
+
+PATCH http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet('0000000008')
+Content-Type: application/json
+
+{
+"TextQuestion": "test update"
+}
+
+DELETE http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet('0000000008')

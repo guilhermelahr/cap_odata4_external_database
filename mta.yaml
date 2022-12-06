@@ -1,0 +1,60 @@
+_schema-version: '3.1'
+ID: cux
+version: 1.0.0
+description: "CUX Application"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
+modules:
+  - name: cux-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: cux-auth
+      - name: cux-papm-cloud-db
+
+  - name: cux-api
+    type: approuter.nodejs
+    path: app/ # from cds.env.folders. Consider also cds.env.build.target -> gen/app
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: cux-auth
+
+resources:
+  - name: cux-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      #config:
+      #  xsappname: cux-api-${org}-${space}
+      #  tenant-mode: dedicated
+
+  - name: cux-papm-cloud-db
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-tags: ["custom-papm-db"]
+    #properties:
+    #  the-service-name: ${service-name}

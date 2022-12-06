@@ -1,0 +1,77 @@
+{
+  "name": "cux",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^6",
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "passport": "^0",
+    "hdb": "^0.19.0"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "engines": {
+    "node": "^16.15"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana-cloud",
+        "credentials": {
+          "driver": "com.sap.db.jdbc.Driver",
+          "encrypt": true,
+          "endpoint": "https://api.cf.us10-004.hana.ondemand.com",
+          "host": "<HANA ENDPOINT>.hana.prod-eu10.hanacloud.ondemand.com",
+          "password": "<MY PASS>",
+          "port": "443",
+          "schema": "<MY SCHEMA>",
+          "tags": [
+            "hana"
+          ],
+          "user": "<MY USER>",
+          "validate_certificate": false
+        },
+        "pool": {
+          "min": 10,
+          "max": 500
+        }
+      },
+      "auth": {
+        "kind": "xsuaa"
+      },
+      "approuter": {
+        "kind": "cloudfoundry"
+      }
+    }
+  }
+}
