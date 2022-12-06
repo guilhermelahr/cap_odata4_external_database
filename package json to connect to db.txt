@@ -51,10 +51,14 @@
           "driver": "com.sap.db.jdbc.Driver",
           "encrypt": true,
           "endpoint": "https://api.cf.us10-004.hana.ondemand.com",
+          "host": "<HANA ID>.hana.prod-eu10.hanacloud.ondemand.com",
+          "password": "<MY PASSWORD>",
           "port": "443",
+          "schema": "<DB SCHEMA>",
           "tags": [
             "hana"
           ],
+          "user": "<USER TO CONNECT>",
           "validate_certificate": false
         },
         "pool": {
@@ -71,3 +75,14 @@
     }
   }
 }
+
+
+----------------------------------------------------
+
+Create a .env file with the credentials
+it's better bind from external service
+
+cds.requires.db.credentials.host = ".....hana.prod-eu10.hanacloud.ondemand.com"
+cds.requires.db.credentials.password = "...."
+cds.requires.db.credentials.schema = "....."
+cds.requires.db.credentials.user = "....."
