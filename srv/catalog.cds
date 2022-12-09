@@ -1,4 +1,4 @@
-service Catalog @(impl : './catalog.js', requires: 'authenticated-user')
+service Catalog @(impl : './catalog.js')//, requires: 'authenticated-user')
 
 {
 

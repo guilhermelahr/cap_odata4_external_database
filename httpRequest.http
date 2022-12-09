@@ -3,7 +3,7 @@ GET http://localhost:4004/Catalog/$metadata
 
 #---------------------------------------ZCUX_POSS_ANSWERSet------------------------------
 
-GET http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet(IdQuestion='0000000003',IdAnswer='0000000002')
+GET http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet(IdQuestion='0000000003',IdAnswer='0000000003')
 
 POST http://localhost:4004/Catalog/ZCUX_POSS_ANSWERSet
 Content-Type: application/json
@@ -54,6 +54,10 @@ DELETE http://localhost:4004/Catalog/ZCUX_QT_ANSSet(IdQuestion='0000000999',User
 GET http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet
 
 GET http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet('0000000003')
+
+GET http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet('0000000003')/Answers
+
+GET http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet('0000000003')?$expand=Answers
 
 POST http://localhost:4004/Catalog/ZCUX_QUESTIONNAIRESet
 Content-Type: application/json

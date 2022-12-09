@@ -32,6 +32,10 @@ modules:
       keep-existing-routes: true
       disk-quota: 256M
       memory: 256M
+    provides:
+      - name: router-api
+        properties:
+          srv-url: ${default-url}
     requires:
       - name: srv-api
         group: destinations
@@ -58,3 +62,26 @@ resources:
       service-tags: ["custom-papm-db"]
     #properties:
     #  the-service-name: ${service-name}
+
+# Creating destination instance to be used for other app, like Fiori app
+  - name: cux-api-destination
+    type: org.cloudfoundry.managed-service
+    requires:
+      - name: router-api #provided by this app
+    parameters:
+      service-plan: lite
+      service: destination
+      config:
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: CUX_OData_API
+                Description: Cux OData API
+                Authentication: NoAuthentication
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{router-api/srv-url}
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                ForwardAuthToken: true

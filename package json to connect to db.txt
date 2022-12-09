@@ -1,3 +1,8 @@
+
+
+CONSIDER GET USER/PASSWORD FROM AN EXTERNAL SERVICE (BINDEND TO YOUR APP), check credencial store service
+for API endpoint and schema, you can use user-provided external service
+
 {
   "name": "cux",
   "version": "1.0.0",
@@ -51,7 +56,7 @@
           "driver": "com.sap.db.jdbc.Driver",
           "encrypt": true,
           "endpoint": "https://api.cf.us10-004.hana.ondemand.com",
-          "host": "<HANA ID>.hana.prod-eu10.hanacloud.ondemand.com",
+          "host": "<HANA ENDPOINT>.hana.prod-eu10.hanacloud.ondemand.com", 
           "password": "<MY PASSWORD>",
           "port": "443",
           "schema": "<DB SCHEMA>",
@@ -79,8 +84,7 @@
 
 ----------------------------------------------------
 
-Create a .env file with the credentials
-it's better bind from external service
+For testing, you can create a .env file with the credentials
 
 cds.requires.db.credentials.host = ".....hana.prod-eu10.hanacloud.ondemand.com"
 cds.requires.db.credentials.password = "...."
